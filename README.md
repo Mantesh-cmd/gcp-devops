@@ -1,1 +1,1 @@
-# gcp-devops
+### gcp-devops repo is for devops practice purpose
