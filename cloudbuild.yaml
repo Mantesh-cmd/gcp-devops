@@ -1,8 +1,10 @@
+## deployment file 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/gcp-devops/gcp-devops-image:latest', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/gcp-devops/gcp-devops-image:latest']
+## deploy image on gke
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
