@@ -1,18 +1,18 @@
 ## deployment file 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/gcp-devops/gcp-devops-image:latest', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/gcp-devops/gcp-devops-image-dev:1.0', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/gcp-devops/gcp-devops-image:latest']
+  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/gcp-devops/gcp-devops-image-dev:1.0']
 # deploy image on gke
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=deployment.yaml
-  - --image=us-central1-docker.pkg.dev/long-sonar-424710-h1/gcp-devops/gcp-devops-image
+  - --image=us-central1-docker.pkg.dev/long-sonar-424710-h1/gcp-devops/gcp-devops-image-dev:1.0
   - --location=us-central1-c	
-  - --cluster=gcp-devops-cluster
-  - --namespace=gcp-devops-prod
+  - --cluster=gcp-devops-development
+  - --namespace=gcp-devops-dev
 options:
   logging: CLOUD_LOGGING_ONLY
  
